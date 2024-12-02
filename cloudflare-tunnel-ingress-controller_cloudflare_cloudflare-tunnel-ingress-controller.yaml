@@ -1,0 +1,15 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: cloudflare-tunnel-ingress-controller
+  namespace: kube-system
+spec:
+  repo: https://great-tuna.github.io/helm-charts
+  chart: cloudflare
+  createNamespace: true
+  targetNamespace: cloudflare-tunnel-ingress-controller
+  valuesContent: |-
+    azureKeyVaultSecret:
+      vaultName: moo-k3s-great-tuna
+  version: 0.1.1
