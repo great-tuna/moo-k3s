@@ -1,0 +1,22 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: tailscale-operator
+  namespace: kube-system
+spec:
+  repo: https://great-tuna.github.io/helm-charts
+  chart: tailscale-operator
+  createNamespace: true
+  targetNamespace: tailscale-operator
+  valuesContent: |-
+    azureKeyVaultSecret:
+      vaultName: moo-k3s-great-tuna
+    tailscale-operator:
+      operatorConfig:
+        defaultTags:
+          - "tag:moo-k3s-operator"
+        hostname: moo-k3s
+      proxyConfig:
+        defaultTags: "tag:moo-k3s-service"
+  version: 0.1.1
