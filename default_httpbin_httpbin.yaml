@@ -1,0 +1,18 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: httpbin
+  namespace: kube-system
+spec:
+  repo: https://great-tuna.github.io/helm-charts
+  chart: httpbin
+  targetNamespace: default
+  valuesContent: |-
+    ingress:
+      enabled: true
+      className: tailscale
+      host: moo-httpbin.great-tuna.ts.net
+      annotations:
+        tailscale.com/tags: tag:moo-k3s-service,tag:https
+  version: 0.1.1
